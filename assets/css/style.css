@@ -16,7 +16,7 @@ header {
 
 header h1 {
   margin: 0;
-  animation: text-shadow 1.5s ease-in-out 2 forwards;
+  animation: text-shadow 1.5s ease-in-out 1 forwards;
   font-size: 2em;
   font-weight: 900;
   line-height: 1;
