@@ -2,7 +2,7 @@
 layout: default
 ---
 <header>
-  <h1><a href="{{ "/" | relative_url }}">{{ site.title }}</a></h1>
+  <h1><a href="{{ "/" | relative_url }}">{% if page.lang and site.author[page.lang] %}{{ site.author[page.lang] }}{% else %}{{ site.title }}{% endif %}</a></h1>
 </header>
 <main>
   <article>
