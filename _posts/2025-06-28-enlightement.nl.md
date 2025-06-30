@@ -6,17 +6,6 @@ lang: nl
 post_id: enlightement
 ---
 
-Verlichting
-
-# Arthur Krasnomakov-Paukovsky
-## Verlichting
-
-28 juni 2025
-
-Talen: RU | NL | EN
-
-## Verlichting
-
 Vóór de verlichting droeg ik water en hakte ik brandhout. Na de verlichting draag ik water en hak ik brandhout.
 
 Een stille en diepe verlichting. Mijn eiland is alles wat ik ken. Ik ben nooit overzee geweest en zal dat waarschijnlijk ook nooit doen.
