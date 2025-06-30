@@ -6,8 +6,6 @@ lang: en
 post_id: enlightement
 ---
 
-Enlightenment
-
 Before enlightenment I carried water and chopped wood. And after enlightenment I carry water and chop wood.
 
 A quiet and profound enlightenment. My island is all I know. I have never been overseas. And I doubt I ever will.
