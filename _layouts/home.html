@@ -3,13 +3,13 @@ layout: default
 ---
 <header>
   <h1><a href="{{ "/" | relative_url }}">{{ site.title }}</a></h1>
+</header>
+<main>
   <div class="header-container">
     <img src="{{ "/assets/klaproos.jpg" | relative_url }}" alt="Klaproos" class="header-image">
     <div class="description">
       {{ site.description | newline_to_br }}
     </div>
   </div>
-</header>
-<main>
   {{ content }}
 </main> 
