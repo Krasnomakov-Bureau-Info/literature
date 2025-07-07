@@ -1,0 +1,53 @@
+---
+layout: default
+---
+<style>
+    .book-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    #content {
+        max-width: 800px;
+        width: 100%;
+        padding: 20px;
+    }
+    h1, h2, h3, h4 {
+        color: #000000;
+    }
+    #reader-view {
+        display: none;
+        gap: 20px;
+    }
+    #reader-main {
+        flex: 3;
+    }
+    #reader-toc {
+        flex: 1;
+        border-left: 1px solid #ccc;
+        padding-left: 20px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    #toc-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    #toc-list li {
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+    #toc-list li:hover {
+        font-weight: bold;
+    }
+    .navigation {
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
+
+<div class="book-wrapper">
+    {{ content }}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+<script src="{{ "/books/js/main.js" | relative_url }}"></script> 

@@ -1,93 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Devilism Essence</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
-    <style>
-        body {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #content {
-            max-width: 800px;
-            width: 100%;
-            padding: 20px;
-        }
-        h1, h2, h3, h4 {
-            color: #000000;
-        }
-        #reader-view {
-            display: none;
-            gap: 20px;
-        }
-        #reader-main {
-            flex: 3;
-        }
-        #reader-toc {
-            flex: 1;
-            border-left: 1px solid #ccc;
-            padding-left: 20px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        #toc-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        #toc-list li {
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        #toc-list li:hover {
-            font-weight: bold;
-        }
-        .navigation {
-            margin-top: 20px;
-            text-align: center;
-        }
-        footer {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            text-align: center;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
-</head>
-<body>
-    <div id="content">
-        <h1 id="main-title"></h1>
-        <div id="language-switcher"></div>
-        <div id="book-selector"></div>
-        <div id="book-content"></div>
-        <div id="reader-view">
-            <div id="reader-main">
-                <h2 id="book-title-reader"></h2>
-                <h3 id="chapter-title"></h3>
-                <div id="chapter-text"></div>
-                <div class="navigation">
-                    <button id="prev-btn">Previous</button>
-                    <button id="next-btn">Next</button>
-                </div>
-            </div>
-            <div id="reader-toc">
-                <h4>Contents</h4>
-                <ul id="toc-list"></ul>
+---
+layout: book
+title: The Devilism Essence
+---
+<div id="content">
+    <h1 id="main-title"></h1>
+    <div id="language-switcher"></div>
+    <div id="book-selector"></div>
+    <div id="book-content"></div>
+    <div id="reader-view">
+        <div id="reader-main">
+            <h2 id="book-title-reader"></h2>
+            <h3 id="chapter-title"></h3>
+            <div id="chapter-text"></div>
+            <div class="navigation">
+                <button id="prev-btn">Previous</button>
+                <button id="next-btn">Next</button>
             </div>
         </div>
+        <div id="reader-toc">
+            <h4>Contents</h4>
+            <ul id="toc-list"></ul>
+        </div>
     </div>
-    <footer>
-        <p>&copy; <span id="copyright-year"></span> Artur Kraskov, Monada Dominion.</p>
-        <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
-    </footer>
-    <script src="js/main.js"></script>
-</body>
-</html> 
+</div> 
