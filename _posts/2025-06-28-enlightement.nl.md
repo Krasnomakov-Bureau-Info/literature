@@ -1,6 +1,3 @@
-<!-- © 2025 Artur Kraskov, Monada Dominion.
-This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
-
 ---
 layout: post
 title: "Verlichting"
@@ -8,6 +5,10 @@ date: 2025-06-28
 lang: nl
 post_id: enlightement
 ---
+
+<!-- © 2025 Artur Kraskov, Monada Dominion.
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
+
 
 Vóór de verlichting droeg ik water en hakte ik brandhout. Na de verlichting draag ik water en hak ik brandhout.
 

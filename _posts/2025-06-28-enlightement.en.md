@@ -1,6 +1,3 @@
-<!-- © 2025 Artur Kraskov, Monada Dominion.
-This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
-
 ---
 layout: post
 title: "Enlightement"
@@ -8,6 +5,10 @@ date: 2025-06-28
 lang: en
 post_id: enlightement
 ---
+
+<!-- © 2025 Artur Kraskov, Monada Dominion.
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
+
 
 Before enlightenment I carried water and chopped wood. And after enlightenment I carry water and chop wood.
 

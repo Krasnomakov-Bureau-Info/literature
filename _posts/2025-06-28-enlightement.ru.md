@@ -1,6 +1,3 @@
-<!-- © 2025 Artur Kraskov, Monada Dominion.
-This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
-
 ---
 layout: post
 title: "Просветление"
@@ -8,6 +5,10 @@ date: 2025-06-28
 lang: ru
 post_id: enlightement
 ---
+
+<!-- © 2025 Artur Kraskov, Monada Dominion.
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
+
 
 До просветления я носил воду и колол дрова. И после просветления я ношу воду и колю дрова. 
 
