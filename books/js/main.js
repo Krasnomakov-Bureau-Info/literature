@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let content = markdownText;
 
         if (content.startsWith('---header---')) {
-            const endOfHeader = content.indexOf('---header---', 12);
+            const endOfHeader = content.indexOf('---header---', 11);
             if (endOfHeader !== -1) {
-                header = content.substring(12, endOfHeader).trim();
-                content = content.substring(endOfHeader + 12).trim();
+                header = content.substring(11, endOfHeader).trim();
+                content = content.substring(endOfHeader + 11).trim();
             }
         }
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (chapterMatch || partMatch || introMatch) {
                 if (contentBuffer.length > 0 && currentTitle) {
-                    parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\\n'), type: 'chapter' });
+                    parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n'), type: 'chapter' });
                 }
                 contentBuffer = [];
                 if (partMatch) {
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         if (contentBuffer.length > 0 && currentTitle) {
-            parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\\n'), type: 'chapter' });
+            parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n'), type: 'chapter' });
         }
 
         return {
