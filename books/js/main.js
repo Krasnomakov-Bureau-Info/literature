@@ -69,19 +69,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (chapterMatch || partMatch) {
                 if (contentBuffer.length > 0) {
-                    parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n') });
+                    parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n'), type: 'chapter' });
                 }
                 currentTitle = chapterMatch ? chapterMatch[1].trim() : line.trim();
                 contentBuffer = [];
+                if (partMatch) {
+                    parsedChapters.push({ title: currentTitle, type: 'part' });
+                    currentTitle = ''; // Reset title after a part heading
+                }
             } else {
                 contentBuffer.push(line);
             }
         }
-        if (contentBuffer.length > 0) {
-            parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n') });
+        if (contentBuffer.length > 0 && currentTitle) {
+            parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n'), type: 'chapter' });
         }
 
-        return parsedChapters.filter(c => c.title && !c.title.toLowerCase().includes('contents') && c.content.trim() !== '');
+        return parsedChapters.filter(c => c.title && (c.type === 'part' || (c.content && c.content.trim() !== '')) && !c.title.toLowerCase().includes('contents') );
     }
 
     function renderChapter(index) {
@@ -98,8 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const tocItems = tocList.getElementsByTagName('li');
         for (let i = 0; i < tocItems.length; i++) {
-            tocItems[i].style.fontWeight = i === index ? 'bold' : 'normal';
-             tocItems[i].style.color = i === index ? '#ff00ff' : '#000000';
+            const chapterIndex = parseInt(tocItems[i].dataset.index, 10);
+            if (!isNaN(chapterIndex)) {
+                tocItems[i].style.fontWeight = chapterIndex === index ? 'bold' : 'normal';
+                tocItems[i].style.color = chapterIndex === index ? '#000000' : '#000000';
+            }
         }
          chapterText.scrollTop = 0;
     }
@@ -108,10 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
         tocList.innerHTML = '';
         chapters.forEach((chapter, index) => {
             const li = document.createElement('li');
-            li.textContent = chapter.title;
-            li.addEventListener('click', () => {
-                renderChapter(index);
-            });
+            if (chapter.type === 'part') {
+                li.innerHTML = `<strong>${chapter.title}</strong>`;
+                li.style.marginTop = '10px';
+            } else {
+                li.textContent = chapter.title;
+                li.dataset.index = index;
+                li.addEventListener('click', () => {
+                    renderChapter(index);
+                });
+            }
             tocList.appendChild(li);
         });
     }
