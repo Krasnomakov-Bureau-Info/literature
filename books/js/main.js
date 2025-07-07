@@ -8,10 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const tocList = document.getElementById('toc-list');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
+    const bookTitleReader = document.getElementById('book-title-reader');
 
     const converter = new showdown.Converter();
     let currentLang = 'en';
     let chapters = [];
+    let bookHeader = null;
     let currentChapterIndex = 0;
 
     const contentPaths = {
@@ -38,7 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function parseChapters(markdownText) {
-        const lines = markdownText.split('\n');
+        let header = null;
+        let content = markdownText;
+
+        if (content.startsWith('---header---')) {
+            const endOfHeader = content.indexOf('---header---', 12);
+            if (endOfHeader !== -1) {
+                header = content.substring(12, endOfHeader).trim();
+                content = content.substring(endOfHeader + 12).trim();
+            }
+        }
+
+        const lines = content.split('\n');
         const parsedChapters = [];
         let contentBuffer = [];
         let currentTitle = "Introduction";
@@ -51,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         if (firstTitleIndex === -1) { // No chapters found
-            if (markdownText.trim()) {
-                parsedChapters.push({ title: 'Book', content: markdownText});
+            if (content.trim()) {
+                parsedChapters.push({ title: 'Book', content: content});
             }
-            return parsedChapters;
+            return { header: header, chapters: parsedChapters };
         }
 
         const introContent = lines.slice(0, firstTitleIndex).join('\n').trim();
@@ -89,7 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
             parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\\n'), type: 'chapter' });
         }
 
-        return parsedChapters.filter(c => c.title && (c.type === 'part' || (c.content && c.content.trim() !== '')) && !c.title.toLowerCase().includes('contents') );
+        return {
+            header: header,
+            chapters: parsedChapters.filter(c => c.title && (c.type === 'part' || (c.content && c.content.trim() !== '')) && !c.title.toLowerCase().includes('contents') )
+        }
     }
 
     function renderChapter(index) {
@@ -146,10 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(path)
             .then(response => response.text())
             .then(text => {
-                chapters = parseChapters(text);
+                const parsedBook = parseChapters(text);
+                chapters = parsedBook.chapters;
+                bookHeader = parsedBook.header;
+
                 if (chapters.length > 0) {
                     bookContent.style.display = 'none';
                     readerView.style.display = 'flex';
+                    if (bookHeader) {
+                        bookTitleReader.innerHTML = converter.makeHtml(bookHeader);
+                    } else {
+                        bookTitleReader.innerHTML = '';
+                    }
                     renderTOC();
                     const firstChapterIndex = chapters.findIndex(c => c.type === 'chapter');
                     if (firstChapterIndex !== -1) {

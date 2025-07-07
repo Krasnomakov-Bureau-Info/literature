@@ -1,13 +1,15 @@
-<!-- © 2025 Artur Kraskov, Monada Dominion.
-This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
-
-
+---header---
 Artur Krasnomakov-Paukovsky
 Book 1
 
 Surreal Story
 About the Spider And the Time
 (A.S.A.T)
+---header---
+
+<!-- © 2025 Artur Kraskov, Monada Dominion.
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
+
 
 ***Foreword***
 This book is about gaining awareness. The path leading to this goal is dangerous and difficult to walk and even more difficult to understand. To a greater extent, this path forces you to abandon your usual worldview, your habits, views, unconscious and selfish desires. When this is done, the path uncovers the functioning of universal laws in everyday life and at any of the existing levels of reality, showing the total unity of everything. But this is not a methodical book like “How to Change Yourself For Dummies”. This is a book about the real segment of the life of someone who follows the path. There are no boring philosophical discourses that have no application in life, but only a description of events that have practical and theoretical value for the community of human beings. It goes without saying that this kind of information is not free. After reading this book, you are likely to notice that your general condition has changed. You will pay a price corresponding to the amount of information that you can assimilate and analyze. The higher your level of education at the moment, the more you can understand, and the more you pay. The more stupid you are, the cheaper it will cost you to read this book.
