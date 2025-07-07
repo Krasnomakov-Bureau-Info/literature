@@ -1,3 +1,6 @@
+<!-- © 2025 Artur Kraskov, Monada Dominion.
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. -->
+
 ---
 layout: post
 title: "Enlightement"
