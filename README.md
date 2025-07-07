@@ -1,4 +1,4 @@
-Hello, my name is Artur Kraskov. My pen name is Krasnomakov. I am a programmer and a writer. I have other roles and hobbies, but these two are main. 
+Hello, my name is Artur Kraskov. My pen name is Krasnomakov. I am a developer, maker and a writer. I have other roles and hobbies, but these two are main. 
 
 I speak Russian, English and want to learn Dutch. I used to teach English.
 
