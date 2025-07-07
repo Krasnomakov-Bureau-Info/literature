@@ -1,6 +1,6 @@
 body {
   font-family: 'Courier New', Courier, monospace;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   line-height: 1.6;
@@ -127,7 +127,6 @@ footer {
 }
 
 .vertical-menu {
-  width: 150px;
   flex-shrink: 0;
 }
 
