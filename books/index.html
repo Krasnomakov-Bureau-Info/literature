@@ -27,6 +27,35 @@
         h1, h2, h3 {
             color: #ff00ff;
         }
+        #reader-view {
+            display: none;
+            gap: 20px;
+        }
+        #reader-main {
+            flex: 3;
+        }
+        #reader-toc {
+            flex: 1;
+            border-left: 1px solid #ccc;
+            padding-left: 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        #toc-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        #toc-list li {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        #toc-list li:hover {
+            color: #ff00ff;
+        }
+        .navigation {
+            margin-top: 20px;
+            text-align: center;
+        }
         footer {
             margin-top: 2rem;
             padding-top: 1rem;
@@ -40,7 +69,22 @@
     <div id="content">
         <h1 id="main-title"></h1>
         <div id="language-switcher"></div>
+        <div id="book-selector"></div>
         <div id="book-content"></div>
+        <div id="reader-view">
+            <div id="reader-main">
+                <h3 id="chapter-title"></h3>
+                <div id="chapter-text"></div>
+                <div class="navigation">
+                    <button id="prev-btn">Previous</button>
+                    <button id="next-btn">Next</button>
+                </div>
+            </div>
+            <div id="reader-toc">
+                <h4>Contents</h4>
+                <ul id="toc-list"></ul>
+            </div>
+        </div>
     </div>
     <footer>
         <p>&copy; <span id="copyright-year"></span> Artur Kraskov, Monada Dominion.</p>

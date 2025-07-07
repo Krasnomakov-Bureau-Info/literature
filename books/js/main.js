@@ -1,11 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const contentDiv = document.getElementById('content');
     const mainTitle = document.getElementById('main-title');
     const langSwitcher = document.getElementById('language-switcher');
     const bookContent = document.getElementById('book-content');
+    const readerView = document.getElementById('reader-view');
+    const chapterTitle = document.getElementById('chapter-title');
+    const chapterText = document.getElementById('chapter-text');
+    const tocList = document.getElementById('toc-list');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
     const converter = new showdown.Converter();
     let currentLang = 'en';
+    let chapters = [];
+    let currentChapterIndex = 0;
 
     const contentPaths = {
         en: {
@@ -30,6 +37,111 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+    function parseChapters(markdownText) {
+        const lines = markdownText.split('\n');
+        const parsedChapters = [];
+        let contentBuffer = [];
+        let currentTitle = "Introduction";
+
+        // Find the index of the first title to capture the introduction
+        let firstTitleIndex = lines.findIndex(line => 
+            line.match(/^\s*\*{3}(.+?)\*{3}\s*$/) ||
+            line.match(/^(PART\s\d+\s-\s.*|Foreword|Prologue|From the author)$/)
+        );
+
+        if (firstTitleIndex === -1) { // No chapters found
+            if (markdownText.trim()) {
+                parsedChapters.push({ title: 'Book', content: markdownText});
+            }
+            return parsedChapters;
+        }
+
+        const introContent = lines.slice(0, firstTitleIndex).join('\n').trim();
+        if (introContent) {
+             parsedChapters.push({ title: "Introduction", content: introContent });
+        }
+
+
+        for (let i = firstTitleIndex; i < lines.length; i++) {
+            const line = lines[i];
+            const chapterMatch = line.match(/^\s*\*{3}(.+?)\*{3}\s*$/);
+            const partMatch = line.match(/^(PART\s\d+\s-\s.*|Foreword|Prologue|From the author)$/);
+
+            if (chapterMatch || partMatch) {
+                if (contentBuffer.length > 0) {
+                    parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n') });
+                }
+                currentTitle = chapterMatch ? chapterMatch[1].trim() : line.trim();
+                contentBuffer = [];
+            } else {
+                contentBuffer.push(line);
+            }
+        }
+        if (contentBuffer.length > 0) {
+            parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n') });
+        }
+
+        return parsedChapters.filter(c => c.title && !c.title.toLowerCase().includes('contents') && c.content.trim() !== '');
+    }
+
+    function renderChapter(index) {
+        if (index < 0 || index >= chapters.length) {
+            return;
+        }
+        currentChapterIndex = index;
+        const chapter = chapters[index];
+        chapterTitle.textContent = chapter.title;
+        chapterText.innerHTML = converter.makeHtml(chapter.content);
+
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === chapters.length - 1;
+
+        const tocItems = tocList.getElementsByTagName('li');
+        for (let i = 0; i < tocItems.length; i++) {
+            tocItems[i].style.fontWeight = i === index ? 'bold' : 'normal';
+             tocItems[i].style.color = i === index ? '#ff00ff' : '#000000';
+        }
+         chapterText.scrollTop = 0;
+    }
+
+    function renderTOC() {
+        tocList.innerHTML = '';
+        chapters.forEach((chapter, index) => {
+            const li = document.createElement('li');
+            li.textContent = chapter.title;
+            li.addEventListener('click', () => {
+                renderChapter(index);
+            });
+            tocList.appendChild(li);
+        });
+    }
+
+    function loadBookIntoReader(path) {
+        fetch(path)
+            .then(response => response.text())
+            .then(text => {
+                chapters = parseChapters(text);
+                if (chapters.length > 0) {
+                    bookContent.style.display = 'none';
+                    readerView.style.display = 'flex';
+                    renderTOC();
+                    renderChapter(0);
+                }
+            });
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentChapterIndex > 0) {
+            renderChapter(currentChapterIndex - 1);
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentChapterIndex < chapters.length - 1) {
+            renderChapter(currentChapterIndex + 1);
+        }
+    });
+
     function render() {
         mainTitle.textContent = contentPaths[currentLang].title;
         renderLangSwitcher();
@@ -45,10 +157,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('en-btn').addEventListener('click', () => {
             currentLang = 'en';
             render();
+            readerView.style.display = 'none';
+            bookContent.style.display = 'block';
         });
         document.getElementById('ru-btn').addEventListener('click', () => {
             currentLang = 'ru';
             render();
+            readerView.style.display = 'none';
+            bookContent.style.display = 'block';
         });
     }
 
@@ -62,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <button id="book1-text-btn">Show Text</button>
             ${currentLang === 'ru' ? '<button id="book1-synopsis-btn">Show Synopsis</button>' : ''}
             ${currentLang === 'en' ? '<a href="' + contentPaths.en.book1_pdf + '" target="_blank"><button>Open PDF</button></a>' : ''}
-            <div id="book1-text-content" style="display: none;"></div>
             <div id="book1-synopsis-content" style="display: none;"></div>
         `;
 
@@ -78,19 +193,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        document.getElementById('book1-text-btn').addEventListener('click', (e) => {
-            const contentEl = document.getElementById('book1-text-content');
-            if (contentEl.style.display === 'none') {
-                fetchAndDisplay(contentPaths[currentLang].book1, contentEl);
-                contentEl.style.display = 'block';
-                e.target.textContent = 'Hide Text';
+        document.getElementById('book1-text-btn').addEventListener('click', () => {
+             if (currentLang === 'en') {
+                loadBookIntoReader(contentPaths[currentLang].book1);
             } else {
-                contentEl.style.display = 'none';
-                e.target.textContent = 'Show Text';
+                const contentEl = document.getElementById('book1-text-content');
+                if (contentEl.style.display === 'none') {
+                    fetchAndDisplay(contentPaths[currentLang].book1, contentEl);
+                    contentEl.style.display = 'block';
+                } else {
+                    contentEl.style.display = 'none';
+                }
             }
         });
 
         if (currentLang === 'ru') {
+            const book1TextContainer = document.createElement('div');
+            book1TextContainer.id = 'book1-text-content';
+            book1TextContainer.style.display = 'none';
+            document.getElementById('book1-text-btn').after(book1TextContainer);
+
             document.getElementById('book1-synopsis-btn').addEventListener('click', (e) => {
                 const contentEl = document.getElementById('book1-synopsis-content');
                  if (contentEl.style.display === 'none') {
