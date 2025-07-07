@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const chapterTitle = document.getElementById('chapter-title');
     const chapterText = document.getElementById('chapter-text');
     const tocList = document.getElementById('toc-list');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
+    const prevBtns = document.querySelectorAll('.prev-btn');
+    const nextBtns = document.querySelectorAll('.next-btn');
 
     const converter = new showdown.Converter();
     let currentLang = 'en';
@@ -41,55 +41,51 @@ document.addEventListener('DOMContentLoaded', () => {
         const lines = markdownText.split('\n');
         const parsedChapters = [];
         let contentBuffer = [];
-        let currentTitle = "Introduction";
+        let currentTitle = null;
 
-        // Find the index of the first title to capture the introduction
-        let firstTitleIndex = lines.findIndex(line => 
-            line.match(/^\s*\*{3}(.+?)\*{3}\s*$/) ||
-            line.match(/^\s*\*{2}(PART\s\d+\s-\s.*)\*{2}\s*$/) ||
-            line.match(/^(Foreword|Prologue|From the author)$/)
+        // Find the index of the first real heading
+        let firstHeadingIndex = lines.findIndex(line =>
+            line.match(/^\s*(\*{2,3})(.+?)\1\s*$/)
         );
 
-        if (firstTitleIndex === -1) { // No chapters found
+        if (firstHeadingIndex === -1) { // No chapters found
             if (markdownText.trim()) {
-                parsedChapters.push({ title: 'Book', content: markdownText});
+                parsedChapters.push({ title: 'Book', content: markdownText, type: 'chapter' });
             }
             return parsedChapters;
         }
 
-        const introContent = lines.slice(0, firstTitleIndex).join('\n').trim();
-        if (introContent) {
-             parsedChapters.push({ title: "Introduction", content: introContent });
-        }
+        const relevantLines = lines.slice(firstHeadingIndex);
 
-
-        for (let i = firstTitleIndex; i < lines.length; i++) {
-            const line = lines[i];
+        for (const line of relevantLines) {
+            const partMatch = line.match(/^\s*\*{2}(.+?)\*{2}\s*$/);
             const chapterMatch = line.match(/^\s*\*{3}(.+?)\*{3}\s*$/);
-            const partMatch = line.match(/^\s*\*{2}(PART\s\d+\s-\s.*)\*{2}\s*$/);
-            const introMatch = line.match(/^(Foreword|Prologue|From the author)$/);
 
-            if (chapterMatch || partMatch || introMatch) {
-                if (contentBuffer.length > 0 && currentTitle) {
-                    parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\\n'), type: 'chapter' });
+            if (partMatch) {
+                if (currentTitle && contentBuffer.length > 0) {
+                    parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n'), type: 'chapter' });
                 }
                 contentBuffer = [];
-                if (partMatch) {
-                    currentTitle = partMatch[1].trim();
-                    parsedChapters.push({ title: currentTitle, type: 'part' });
-                    currentTitle = null; // A part is a separator, not a chapter container
-                } else {
-                    currentTitle = chapterMatch ? chapterMatch[1].trim() : (introMatch ? introMatch[1].trim() : null);
+                currentTitle = null;
+                parsedChapters.push({ title: partMatch[1].trim(), type: 'part' });
+            } else if (chapterMatch) {
+                if (currentTitle && contentBuffer.length > 0) {
+                    parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n'), type: 'chapter' });
                 }
+                contentBuffer = [];
+                currentTitle = chapterMatch[1].trim();
             } else {
-                contentBuffer.push(line);
+                if (currentTitle) {
+                    contentBuffer.push(line);
+                }
             }
         }
-        if (contentBuffer.length > 0 && currentTitle) {
-            parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\\n'), type: 'chapter' });
+
+        if (currentTitle && contentBuffer.length > 0) {
+            parsedChapters.push({ title: currentTitle, content: contentBuffer.join('\n'), type: 'chapter' });
         }
 
-        return parsedChapters.filter(c => c.title && (c.type === 'part' || (c.content && c.content.trim() !== '')) && !c.title.toLowerCase().includes('contents') );
+        return parsedChapters;
     }
 
     function renderChapter(index) {
@@ -106,12 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
         chapterTitle.textContent = chapter.title;
         chapterText.innerHTML = converter.makeHtml(chapter.content);
 
-        // Find previous and next true chapters for button state
         const prevChapter = chapters.slice(0, index).reverse().find(c => c.type === 'chapter');
         const nextChapter = chapters.slice(index + 1).find(c => c.type === 'chapter');
 
-        prevBtn.disabled = !prevChapter;
-        nextBtn.disabled = !nextChapter;
+        prevBtns.forEach(btn => btn.disabled = !prevChapter);
+        nextBtns.forEach(btn => btn.disabled = !nextChapter);
 
         const tocItems = tocList.getElementsByTagName('li');
         for (let i = 0; i < tocItems.length; i++) {
@@ -159,18 +154,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    prevBtn.addEventListener('click', () => {
-        const prevChapterIndex = chapters.slice(0, currentChapterIndex).findLastIndex(c => c.type === 'chapter');
-        if (prevChapterIndex !== -1) {
-            renderChapter(prevChapterIndex);
-        }
+    prevBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const prevChapterIndex = chapters.slice(0, currentChapterIndex).findLastIndex(c => c.type === 'chapter');
+            if (prevChapterIndex !== -1) {
+                renderChapter(prevChapterIndex);
+            }
+        });
     });
 
-    nextBtn.addEventListener('click', () => {
-        const nextChapterIndex = chapters.slice(currentChapterIndex + 1).findIndex(c => c.type === 'chapter');
-        if (nextChapterIndex !== -1) {
-            renderChapter(currentChapterIndex + 1 + nextChapterIndex);
-        }
+    nextBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const nextChapterIndex = chapters.slice(currentChapterIndex + 1).findIndex(c => c.type === 'chapter');
+            if (nextChapterIndex !== -1) {
+                renderChapter(currentChapterIndex + 1 + nextChapterIndex);
+            }
+        });
     });
 
     function render() {
