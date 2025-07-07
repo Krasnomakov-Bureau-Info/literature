@@ -225,8 +225,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderSections() {
         bookContent.innerHTML = `
-            <h2>General Synopsis</h2>
-            <button id="gen-synopsis-btn">Show Synopsis</button>
+            <h2>General Annotation</h2>
+            <button id="gen-synopsis-btn">Show Annotation</button>
             <div id="gen-synopsis-content" style="display: none;"></div>
 
             <h2>Book 1: About the Spider and the Time</h2>
@@ -241,10 +241,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (contentEl.style.display === 'none') {
                 fetchAndDisplay(contentPaths[currentLang].generalSynopsis, contentEl);
                 contentEl.style.display = 'block';
-                e.target.textContent = 'Hide Synopsis';
+                e.target.textContent = 'Hide Annotation';
             } else {
                 contentEl.style.display = 'none';
-                e.target.textContent = 'Show Synopsis';
+                e.target.textContent = 'Show Annotation';
             }
         });
 

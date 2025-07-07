@@ -29,7 +29,7 @@ Its special structure unfolds even deeper in the transformational game "Mystical
 
 The game field is a dodecagram divided into four realities or four enneagrams. To take one correct step in real life, the player must work through the enneagram of alternative reality or take 6 steps in it. Each task or each card for a move is an excerpt from the book, which in hidden form and with the help of game mechanics gives the player a message, like an oracle.
 
-Game website: http://mysticaljourney.tilda.ws/
+Game website: coming soon
 
 Such combination and achievement of effect are possible thanks to the special language in which the book is written and its special internal structure. The text affects a person's perception of reality and changes it.
 
