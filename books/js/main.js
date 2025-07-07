@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mainTitle.textContent = contentPaths[currentLang].title;
         renderLangSwitcher();
         renderSections();
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
     }
 
     function renderLangSwitcher() {
@@ -105,6 +106,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     render();
-
-    document.getElementById('copyright-year').textContent = new Date().getFullYear();
 }); 
