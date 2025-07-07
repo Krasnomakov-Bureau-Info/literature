@@ -105,4 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     render();
+
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
 }); 
