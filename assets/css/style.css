@@ -1,9 +1,43 @@
 body {
   font-family: 'Courier New', Courier, monospace;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   line-height: 1.6;
+}
+
+.container {
+  display: flex;
+}
+
+.left-menu {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 1rem;
+  height: 100vh;
+  border-right: 1px solid #ccc;
+}
+
+.left-menu nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-menu nav ul li {
+  margin-bottom: 1rem;
+}
+
+.left-menu nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  max-width: 800px;
 }
 
 header {
