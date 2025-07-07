@@ -26,7 +26,7 @@ Hope you will like my art work. Enjoy.
 
 "Тщеславие и Самолюбие обретают более персонифицированные формы в миниатюрах, и как брейн-данс передают определенную глубину момента сюрреалистического мира для того, чтобы читатель мог увидеть то, чего быть не должно." - Такой вывод делает писатель. Преодолевая в себе ограничения диалектики автор создает формат, по его мнению, способный показывать опасные и острые углы и темы технологического прогресса, современной жизни, истории, будущего, без своего личного мнения, но с позитивным намерением.
 
----
+--- ---
 
 Arthur Krasnomakov-Paukovsky
 
@@ -42,7 +42,7 @@ Why not just write about God and Truth? About science? The author asks himself t
 
 "Vanity and Self-love acquire more personalized forms in miniatures, and like brain dance convey a certain depth of the moment of the surreal world so that the reader can see what should not be." - This is the conclusion made by the writer. Overcoming the limitations of dialectics in himself, the author creates a format that, in his opinion, is capable of showing dangerous and sharp angles and themes of technological progress, modern life, history, the future, without his own personal opinion, but with a positive intention.
 
----
+--- ---
 
 Arthur Krasnomakov-Paukovsky
 
