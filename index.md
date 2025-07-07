@@ -25,4 +25,7 @@ title: Home
   <li>
     <a href="{{ "/books/" | relative_url }}">The Devilism Essence</a>
   </li>
+  <li>
+    <a href="{{ "/books/ringen_van_patronage/" | relative_url }}">Ringen van Patronage</a>
+  </li>
 </ul> 

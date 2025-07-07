@@ -19,15 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentPaths = {
         en: {
             title: "The Devilism Essence or Materials of the Case of Mister N.",
-            generalSynopsis: 'the_devilism_essence/eng/synopsis_devilism_essence_eng.md',
-            book1: 'the_devilism_essence/eng/about_the_spider_and_the_time.md',
-            book1_pdf: 'the_devilism_essence/eng/AboutTheSpiderAndTheTime.pdf'
+            generalSynopsis: 'the_devilism_essence/about_the_spider_and_the_time/eng/synopsis_devilism_essence_eng.md',
+            book1: 'the_devilism_essence/about_the_spider_and_the_time/eng/about_the_spider_and_the_time.md',
+            book1_pdf: 'the_devilism_essence/about_the_spider_and_the_time/eng/AboutTheSpiderAndTheTime.pdf'
         },
         ru: {
             title: "Суть дьяволизма или материалы дела Господина Н",
-            generalSynopsis: 'the_devilism_essence/ru/synopsis_ru.txt',
-            book1: 'the_devilism_essence/ru/о_пауке_и_о_времени.md',
-            book1_synopsis: 'the_devilism_essence/ru/synopsis_asat_ru.txt'
+            generalSynopsis: 'the_devilism_essence/about_the_spider_and_the_time/ru/synopsis_ru.txt',
+            book1: 'the_devilism_essence/about_the_spider_and_the_time/ru/о_пауке_и_о_времени.md',
+            book1_synopsis: 'the_devilism_essence/about_the_spider_and_the_time/ru/synopsis_asat_ru.txt'
         }
     };
 
