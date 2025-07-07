@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const bookTitleReader = document.getElementById('book-title-reader');
 
-    const converter = new showdown.Converter();
+    const converter = new showdown.Converter({ simpleLineBreaks: true });
     let currentLang = 'en';
     let chapters = [];
     let bookHeader = null;
