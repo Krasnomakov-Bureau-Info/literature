@@ -1,14 +1,12 @@
-Hello, my name is Artur Krasnomakov. I am a programmer and a writer. I have other roles and hobbies, but these are two main. 
+Hello, my name is Artur Kraskov. My pen name is Krasnomakov. I am a programmer and a writer. I have other roles and hobbies, but these two are main. 
 
-I speak Russian, English and want to learn Dutch. 
+I speak Russian, English and want to learn Dutch. I used to teach English.
 
-My attempts to become a writer span since my early childhood. I really like to do it. 
+My attempts to become a writer span since my early childhood. Writing is something I really like to do. 
 
 In order to motivate myself to learn Dutch more I decided to translate and publish my works.
 
 This repo is my writing lab and my dojo for exercising with different languages. 
-
-Hope you will like my art work. Enjoy.
 
 ----
 
@@ -44,7 +42,7 @@ Why not just write about God and Truth? About science? The author asks himself t
 
 --- ---
 
-Arthur Krasnomakov-Paukovsky
+Artuurros Van Der Klaproos Van Spinneweb
 
 Surrealisme. Deze werken zijn tot op zekere hoogte geïnspireerd door de schilderijen van Jheronimus Bosch. En in wezen dienen ze een soortgelijk doel: ze tonen de donkere kanten en leggen negatieve eigenschappen bloot. Dezelfde verhalen en miniaturen, waarin geen duisternis heerst, hoewel ze nu een minderheid vormen, creëren simpelweg een surrealistische wereld.
 
