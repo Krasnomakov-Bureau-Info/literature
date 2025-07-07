@@ -1,7 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,700,900,400italic,700italic,900italic);
-
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
