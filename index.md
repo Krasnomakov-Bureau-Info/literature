@@ -4,6 +4,7 @@ title: Home
 ---
 <h1>My Writings</h1>
 
+<h2>Miniatures</h2>
 <ul>
   {% assign posts_by_id = site.posts | group_by: "post_id" %}
   {% for post_group in posts_by_id %}
@@ -17,4 +18,11 @@ title: Home
       {% endfor %})
     </li>
   {% endfor %}
+</ul>
+
+<h2>Books</h2>
+<ul>
+  <li>
+    <a href="{{ "/books/" | relative_url }}">The Devilism Essence</a>
+  </li>
 </ul> 
