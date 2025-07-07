@@ -11,31 +11,10 @@
             color: #000000;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
-        }
-        .left-menu {
-          width: 200px;
-          background-color: #f4f4f4;
-          padding: 1rem;
-          height: 100vh;
-          border-right: 1px solid #ccc;
-        }
-
-        .left-menu nav ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .left-menu nav ul li {
-          margin-bottom: 1rem;
-        }
-
-        .left-menu nav ul li a {
-          text-decoration: none;
-          color: #333;
-          font-weight: bold;
+            flex-direction: column;
+            align-items: center;
         }
         #content {
             max-width: 800px;
@@ -84,15 +63,6 @@
     </style>
 </head>
 <body>
-    <aside class="left-menu">
-      <nav>
-        <ul>
-          <li><a href="/">Main</a></li>
-          <li><a href="/books/">Books</a></li>
-          <li><a href="/#miniatures">Miniatures</a></li>
-        </ul>
-      </nav>
-    </aside>
     <div id="content">
         <h1 id="main-title"></h1>
         <div id="language-switcher"></div>

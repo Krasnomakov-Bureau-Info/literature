@@ -4,7 +4,7 @@ title: Home
 ---
 <h1>My Writings</h1>
 
-<h2 id="miniatures">Miniatures</h2>
+<h2>Miniatures</h2>
 <ul>
   {% assign posts_by_id = site.posts | group_by: "post_id" %}
   {% for post_group in posts_by_id %}
