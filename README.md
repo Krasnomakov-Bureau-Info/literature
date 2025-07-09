@@ -8,6 +8,9 @@ In order to motivate myself to learn Dutch more I decided to translate and publi
 
 This repo is my writing lab and my dojo for exercising with different languages. 
 
+Website:
+https://krasnomakov-bureau-info.github.io/literature/
+
 ----
 
 Артур Красномаков-Пауковский
