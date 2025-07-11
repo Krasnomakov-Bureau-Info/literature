@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalText = document.getElementById('modal-text');
     const closeButton = document.querySelector('.close-button');
 
-    let currentLang = 'ru'; // Default to Russian as it's the only one available
+    let currentLang = 'ru'; // Default 
 
     const contentPaths = {
         en: {
-            title: "Rings of Patronage",
-            pdf: '' // No English PDF yet
+            title: "Ringen Van Patronage",
+            pdf: '' // empty for now
         },
         ru: {
             title: "Ринген ван Патронаж",
@@ -53,6 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.style.display = "none";
         }
     }
+
+    function showWarning() {
+        const warningText = `ОСТОРОЖНО! НЕНОРМАТИВНАЯ ЛЕКСИКА! Некоторые главы содержат неприемлемые выражения, оскорбления и яды. Если вы склонны злиться после прочитанного, то не читайте это - вы вероятнее всего взбеситесь. Все совпадения с реальными именами людей или организаций есть предмет случая и не могут быть восприняты иначе.`;
+        modalText.innerHTML = `<div style='color: red; font-weight: bold; font-size: 1.2em; margin-bottom: 1em;'>${warningText}</div>`;
+        modal.style.display = 'block';
+    }
+
+    // Show warning as soon as the page loads
+    showWarning();
 
     function render() {
         mainTitle.textContent = contentPaths[currentLang].title;
