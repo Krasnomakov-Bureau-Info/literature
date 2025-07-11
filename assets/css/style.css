@@ -152,3 +152,15 @@ footer {
   padding-left: 2rem;
   border-left: 1px solid #ccc;
 } 
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    font-size: 1em !important;
+    padding: 1em !important;
+  }
+  #modal-text {
+    font-size: 1em !important;
+  }
+} 

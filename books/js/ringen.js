@@ -60,8 +60,26 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'block';
     }
 
-    // Show warning as soon as the page loads
-    showWarning();
+    function isFromMainPage() {
+        try {
+            const ref = document.referrer;
+            if (!ref) return false;
+            const a = document.createElement('a');
+            a.href = ref;
+            // Accept both root and /index.html as main page
+            return (
+                a.pathname === '/' ||
+                a.pathname === '/index.html'
+            );
+        } catch (e) {
+            return false;
+        }
+    }
+
+    // Show warning only if navigated from main page
+    if (isFromMainPage()) {
+        showWarning();
+    }
 
     function render() {
         mainTitle.textContent = contentPaths[currentLang].title;
