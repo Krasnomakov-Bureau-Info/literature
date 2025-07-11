@@ -81,17 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showWarning();
     }
 
-    // Remove any duplicate warning banner injection. Only inject once into #banner-slot.
-    const bannerSlot = document.getElementById('banner-slot');
-    if (bannerSlot && !document.getElementById('warning-banner')) {
-        bannerSlot.innerHTML = `
-            <div id="warning-banner">
-                <button onclick="document.getElementById('warning-banner').style.display='none'" class="warning-close">&times;</button>
-                <span>ОСТОРОЖНО! НЕНОРМАТИВНАЯ ЛЕКСИКА! Некоторые главы содержат неприемлемые выражения, оскорбления и яды. Если вы склонны злиться после прочитанного, то не читайте это - вы вероятнее всего взбеситесь. Все совпадения с реальными именами людей или организаций есть предмет случая и не могут быть восприняты иначе.</span>
-            </div>
-        `;
-    }
-
     function render() {
         mainTitle.textContent = contentPaths[currentLang].title;
         renderLangSwitcher();
