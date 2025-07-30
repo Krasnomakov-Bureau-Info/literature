@@ -8,7 +8,11 @@ title: Home
 <ul>
   {% assign posts_by_id = site.posts | group_by: "post_id" %}
   {% for post_group in posts_by_id %}
-    {% assign first_post = post_group.items | first %}
+    {% assign en_post = post_group.items | where: "lang", "en" | first %}
+    {% assign first_post = en_post %}
+    {% if first_post == nil %}
+      {% assign first_post = post_group.items | first %}
+    {% endif %}
     <li>
       <a href="{{ first_post.url | relative_url }}">
         {{ first_post.title }}
@@ -28,4 +32,4 @@ title: Home
   <li>
     <a href="{{ "/books/ringen_van_patronage/" | relative_url }}">Ringen van Patronage</a>
   </li>
-</ul> 
+</ul>
