@@ -38,4 +38,7 @@ title: Home
   <li>
     <a href="{{ "/books/now_he_is_with_me/" | relative_url }}">Now he is with me — Pavel Ivanovich</a>
   </li>
+  <li>
+    <a href="{{ "/books/ballads_about_korean_bbq/" | relative_url }}">Ballads about Korean BBQ</a>
+  </li>
 </ul>
