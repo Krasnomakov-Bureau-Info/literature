@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentPaths = {
         en: {
             title: "Ringen Van Patronage",
-            pdf: '' // empty for now
+            pdf: '', // coming soon
+            annotation: '' // coming soon
         },
         ru: {
             title: "Ринген ван Патронаж",
@@ -110,31 +111,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderSections() {
         const book = contentPaths[currentLang];
         
-        let annotationHTML = '';
-        if (book.annotation) {
-            annotationHTML = `
-                <h2>Annotation</h2>
-                <button id="read-annotation-btn">Read Annotation</button>
-            `;
-        }
+        const annotationHTML = `
+            <h2>Annotation</h2>
+            ${book.annotation ? '<button id="read-annotation-btn">Read Annotation</button>' : '<button id="read-annotation-btn" disabled>Coming soon</button>'}
+        `;
 
-        let bookHTML = '';
-        if (book.pdf) {
-            bookHTML = `
-                <h2>Book</h2>
-                <a href="${book.pdf}" target="_blank"><button>Open PDF</button></a>
-            `;
-        } else {
-            bookHTML = `
-                <h2>Book</h2>
-                <p>Coming soon.</p>
-            `;
-        }
+        const bookHTML = `
+            <h2>Book</h2>
+            ${book.pdf ? `<a href="${book.pdf}" target="_blank"><button>Open PDF</button></a>` : '<button disabled>Coming soon</button>'}
+        `;
         
         bookContent.innerHTML = annotationHTML + bookHTML;
 
-        if (book.annotation) {
-            document.getElementById('read-annotation-btn').addEventListener('click', () => {
+        const annBtn = document.getElementById('read-annotation-btn');
+        if (book.annotation && annBtn) {
+            annBtn.addEventListener('click', () => {
                 loadContent(book.annotation);
             });
         }
