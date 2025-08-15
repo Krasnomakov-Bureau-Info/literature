@@ -24,10 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
             book1_pdf: 'the_devilism_essence/about_the_spider_and_the_time/eng/AboutTheSpiderAndTheTime.pdf'
         },
         ru: {
-            title: "Суть дьяволизма или материалы дела Господина Н",
+            title: "Суть дьяволизма или Материалы дела Господина Н",
             generalSynopsis: 'the_devilism_essence/about_the_spider_and_the_time/ru/synopsis_ru.txt',
             book1: 'the_devilism_essence/about_the_spider_and_the_time/ru/о_пауке_и_о_времени.md',
-            book1_synopsis: 'the_devilism_essence/about_the_spider_and_the_time/ru/synopsis_asat_ru.txt'
+            book1_synopsis: 'the_devilism_essence/about_the_spider_and_the_time/ru/synopsis_asat_ru.txt',
+            book1_pdf: 'the_devilism_essence/about_the_spider_and_the_time/ru/О Пауке и о Времени.pdf'
         }
     };
 
@@ -233,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button id="book1-text-btn">Show Text</button>
             ${currentLang === 'ru' ? '<button id="book1-synopsis-btn">Show Synopsis</button>' : ''}
             ${currentLang === 'en' ? '<a href="' + contentPaths.en.book1_pdf + '" target="_blank"><button>Open PDF</button></a>' : ''}
+            ${currentLang === 'ru' && contentPaths.ru.book1_pdf ? '<a href="' + contentPaths.ru.book1_pdf + '" target="_blank"><button>Open PDF</button></a>' : ''}
             <div id="book1-synopsis-content" style="display: none;"></div>
         `;
 
